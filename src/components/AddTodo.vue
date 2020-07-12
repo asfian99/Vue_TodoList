@@ -16,7 +16,7 @@
 
 <script>
 // uuid for generaate id
-// import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4 } from "uuid";
 export default {
   name: "AddTodo",
   data() {
@@ -28,6 +28,7 @@ export default {
     addTodo(e) {
       e.preventDefault();
       const newTodo = {
+        id: uuidv4(),
         title: this.title,
         completed: false,
       };
@@ -36,6 +37,20 @@ export default {
       //   clear from
       this.title = "";
     },
+
+    // Dibawah ini menggunakan Axios HttpRequest
+    //   addTodo(e) {
+    //     e.preventDefault();
+    //     const newTodo = {
+    //       title: this.title,
+    //       completed: false,
+    //     };
+    //     //   Send up to parrent
+    //     this.$emit("add-todo", newTodo);
+    //     //   clear from
+    //     this.title = "";
+    //   },
+    // },
   },
 };
 </script>

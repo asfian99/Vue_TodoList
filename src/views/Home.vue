@@ -8,7 +8,8 @@
 <script>
 import Todos from "../components/Todos";
 import AddTodo from "../components/AddTodo";
-import axios from "axios";
+// Dibawah ini merupakan Axios HttpRequest
+// import axios from "axios";
 
 export default {
   name: "Home",
@@ -23,32 +24,40 @@ export default {
   },
   methods: {
     deleteTodo(id) {
-      axios
-        .delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
-        .then(
-          // eslint-disable-next-line no-unused-vars
-          (res) =>
-            (this.todosData = this.todosData.filter((res) => res.id !== id))
-        )
-        .catch((err) => console.log(err));
+      this.todosData = this.todosData.filter((todo) => todo.id !== id);
     },
     addTodo(newTodo) {
-      const { title, completed } = newTodo;
-      axios
-        .post("https://jsonplaceholder.typicode.com/todos", {
-          title,
-          completed,
-        })
-        .then((res) => (this.todosData = [...this.todosData, res.data]))
-        .catch((err) => console.log(err));
+      this.todosData = [...this.todosData, newTodo];
     },
+
+    // Dibawah ini menggunakan Axios HttpRequest
+    // deleteTodo(id) {
+    //   axios
+    //     .delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
+    //     .then(
+    //       // eslint-disable-next-line no-unused-vars
+    //       (res) =>
+    //         (this.todosData = this.todosData.filter((res) => res.id !== id))
+    //     )
+    //     .catch((err) => console.log(err));
+    // },
+    // addTodo(newTodo) {
+    //   const { title, completed } = newTodo;
+    //   axios
+    //     .post("https://jsonplaceholder.typicode.com/todos", {
+    //       title,
+    //       completed,
+    //     })
+    //     .then((res) => (this.todosData = [...this.todosData, res.data]))
+    //     .catch((err) => console.log(err));
+    // },
   },
-  created() {
-    axios
-      .get("https://jsonplaceholder.typicode.com/todos?_limit=5")
-      .then((res) => (this.todosData = res.data))
-      .catch((err) => console.log(err));
-  },
+  // created() {
+  //   axios
+  //     .get("https://jsonplaceholder.typicode.com/todos?_limit=5")
+  //     .then((res) => (this.todosData = res.data))
+  //     .catch((err) => console.log(err));
+  // },
 };
 </script>
 
